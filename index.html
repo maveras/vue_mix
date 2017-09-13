@@ -1,31 +1,51 @@
 <script src="https://unpkg.com/vue"></script>
 <body>
-  <div id="exercise">
+    <div id="exercise">
     <p>vue js is damn cool - my name is {{ myName }}</p>
     <p> my age is {{ age }}</p>
     <p> my age x 3 {{ myAgeTri() }}</p>
     <p>the random: {{ theRandom() }} </p>
     <br>
     <p>the google image</p>
-    <img v-bind:src="googleImg" alt="">
+    <!-- img v-bind:src="googleImg" alt=""-->
     <input type="text" v-model="myName">
-  </div>
+    <br>
+    <button v-on:click = 'increase()'> increase counter</button>
+    <p>increase! {{ counter }}</p>
+    <p v-on:mousemove="updateCoordinates($event)"> coordinate X / Y: {{coorX}} / {{coorY}} <span v-on:mousemove.stop>DEAD SPOT</span></p>
+    <p> <input type="text" v-on:keyup.enter.space="alertme">alert"""</p>
+    
+    </div>
 </body>
 <script>
-    new Vue ({
-        el: '#exercise',
-      data: {
-        myName: ' Marcelo ',
-        age: 34,
-        googleImg: 'https://www.google.cl/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png'
-      },
-      methods: {
-        myAgeTri () {
-            return this.age * 3
-        },
-        theRandom () {
-            return Math.random()
-        }
-      }
-    })
+new Vue ({
+  el: '#exercise',
+  data: {
+    myName: ' Marcelo ',
+    age: 34,
+    counter: 0,
+    coorX: 0,
+    coorY: 0,
+    enterSpaceInput:'',
+    googleImg: 'https://www.google.cl/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png'
+  },
+  methods: {
+    myAgeTri () {
+        return this.age * 3
+    },
+    theRandom () {
+        return Math.random()
+    },
+    increase () {
+        this.counter++
+    },
+    updateCoordinates (event) {
+        this.coorX = event.clientX
+      this.coorY = event.clientY
+    },
+    changeEnterSpace (event) {
+        this.enterSpaceInput = event.target.value
+    }
+  }
+})
 </script>
