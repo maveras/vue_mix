@@ -1,0 +1,31 @@
+<script src="https://unpkg.com/vue"></script>
+<body>
+  <div id="exercise">
+    <p>vue js is damn cool - my name is {{ myName }}</p>
+    <p> my age is {{ age }}</p>
+    <p> my age x 3 {{ myAgeTri() }}</p>
+    <p>the random: {{ theRandom() }} </p>
+    <br>
+    <p>the google image</p>
+    <img v-bind:src="googleImg" alt="">
+    <input type="text" v-model="myName">
+  </div>
+</body>
+<script>
+    new Vue ({
+        el: '#exercise',
+      data: {
+        myName: ' Marcelo ',
+        age: 34,
+        googleImg: 'https://www.google.cl/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png'
+      },
+      methods: {
+        myAgeTri () {
+            return this.age * 3
+        },
+        theRandom () {
+            return Math.random()
+        }
+      }
+    })
+</script>
